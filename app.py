@@ -4,7 +4,7 @@ import numpy as np
 import altair as alt
 
 st.set_page_config(page_title="CX Sentiment Analyzer", page_icon="🗣️", layout="wide")
-st.title("🗣️ CX Sentiment Analyzer — Voice of Customer")
+st.title("CX Sentiment Analyzer-Voice of Customer")
 
 st.markdown("""
 Upload a CSV of customer feedback (or use the sample). The app will:

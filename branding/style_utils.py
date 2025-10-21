@@ -1,66 +1,74 @@
 import streamlit as st
 import altair as alt
 
-# Brand tokens
 COLORS = {
-    "bg": "#0F172A",
-    "card": "#111827",
-    "text": "#E5E7EB",
-    "muted": "#94A3B8",
-    "accent": "#38BDF8",   # sky
-    "success": "#34D399",  # mint
-    "danger": "#F87171"    # coral/red
+    "bg": "#FFFFFF",
+    "card": "#E8EEF1",
+    "text": "#2F3437",
+    "muted": "#6B7280",
+    "accent": "#4A90E2",
+    "border": "#B0BEC5"
 }
 
 def inject_css():
     st.markdown(
         f"""
         <style>
-        /* Global */
         .block-container {{
-            padding-top: 2.0rem;
-            padding-bottom: 4rem;
+            padding-top: 2rem;
+            padding-bottom: 3rem;
             max-width: 1200px;
+            color: {COLORS['text']};
         }}
-        h1, h2, h3, h4, h5, h6 {{ letter-spacing: 0.2px; }}
+
+        h1, h2, h3, h4 {{
+            color: {COLORS['text']};
+            letter-spacing: 0.2px;
+        }}
+
         /* Buttons */
         .stButton>button {{
-            border-radius: 10px;
-            border: 1px solid rgba(56,189,248,.35);
-            background: {COLORS["accent"]};
-            color: #0B1221;
-            font-weight: 700;
-            transition: transform .15s ease, box-shadow .15s ease, background .15s ease;
+            border-radius: 8px;
+            border: 1px solid {COLORS['border']};
+            background: {COLORS['accent']};
+            color: white;
+            font-weight: 600;
+            transition: all 0.2s ease;
         }}
         .stButton>button:hover {{
+            background: #3D7CC3;
             transform: translateY(-1px);
-            box-shadow: 0 6px 20px rgba(56,189,248,.25);
         }}
-        /* Metric cards */
+
+        /* Metric boxes */
         div[data-testid="stMetric"] {{
-            background: linear-gradient(180deg, rgba(255,255,255,.03), rgba(255,255,255,0));
-            border: 1px solid rgba(148,163,184,.18);
-            padding: 14px 16px;
-            border-radius: 14px;
+            background: {COLORS['card']};
+            border: 1px solid {COLORS['border']};
+            border-radius: 10px;
+            padding: 12px 16px;
         }}
-        /* Tables */
+
+        /* Table borders */
         .stDataFrame, .stTable {{
-            border-radius: 12px;
-            overflow: hidden;
-            border: 1px solid rgba(148,163,184,.18);
+            border: 1px solid {COLORS['border']};
+            border-radius: 10px;
         }}
+
         /* File uploader */
         section[data-testid="stFileUploader"] > div {{
-            background: {COLORS["card"]};
-            border: 1px dashed rgba(148,163,184,.35);
-            border-radius: 14px;
+            background: {COLORS['card']};
+            border: 1px dashed {COLORS['border']};
+            border-radius: 10px;
         }}
-        /* Subtle link style */
+
+        /* Subtle link */
         a {{
-            color: {COLORS["accent"]};
+            color: {COLORS['accent']};
             text-decoration: none;
         }}
-        a:hover {{ text-decoration: underline; }}
+        a:hover {{
+            text-decoration: underline;
+        }}
         </style>
         """,
         unsafe_allow_html=True
@@ -70,23 +78,20 @@ def banner(title: str, subtitle: str, emoji: str = "✨"):
     st.markdown(
         f"""
         <div style="
-            border: 1px solid rgba(148,163,184,.18);
-            border-radius: 18px;
-            padding: 22px 20px;
-            margin-bottom: 18px;
-            background: linear-gradient(135deg, rgba(56,189,248,.10), rgba(52,211,153,.08));
+            border: 1px solid {COLORS['border']};
+            border-radius: 14px;
+            padding: 20px;
+            margin-bottom: 22px;
+            background: linear-gradient(135deg, rgba(74,144,226,0.08), rgba(232,238,241,0.9));
         ">
           <h1 style="margin:0; font-size: 1.9rem;">{emoji} {title}</h1>
-          <p style="margin: 6px 0 0; color:{COLORS['muted']};">
-            {subtitle}
-          </p>
+          <p style="margin-top:6px; color:{COLORS['muted']};">{subtitle}</p>
         </div>
         """,
         unsafe_allow_html=True
     )
 
 def set_altair_theme():
-    # Unified chart theme
     def _theme():
         return {
             "config": {
@@ -95,13 +100,8 @@ def set_altair_theme():
                 "axis": {
                     "labelColor": COLORS["muted"],
                     "titleColor": COLORS["muted"],
-                    "gridColor": "#1F2937"
+                    "gridColor": COLORS["border"]
                 },
                 "legend": {"labelColor": COLORS["text"], "titleColor": COLORS["text"]},
                 "range": {
-                    "category": [COLORS["accent"], COLORS["success"], COLORS["muted"], "#F59E0B", "#A78BFA"]
-                }
-            }
-        }
-    alt.themes.register("ms_insight", _theme)
-    alt.themes.enable("ms_insight")
+                    "category": [COLORS["acce]()]()

@@ -2,9 +2,17 @@ import streamlit as st
 import pandas as pd
 import numpy as np
 import altair as alt
+import sys, os
+sys.path.append(os.path.join(os.path.dirname(__file__), ".."))
+from branding.style_utils import inject_css, banner, set_altair_theme, COLORS
 
-st.set_page_config(page_title="CX Sentiment Analyzer", page_icon="🗣️", layout="wide")
-st.title("CX Sentiment Analyzer-Voice of Customer")
+inject_css()
+set_altair_theme()
+banner(
+    title="CX Sentiment Analyzer — Voice of Customer",
+    subtitle="Upload feedback, label sentiment & topics, and export a labeled CSV.",
+    emoji="🗣️"
+)
 
 st.markdown("""
 Upload a CSV of customer feedback (or use the sample). The app will:

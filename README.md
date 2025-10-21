@@ -1,2 +1,1 @@
-# insights-portfolio
-Interactive data and insights portfolio
+Placeholder content for README.md

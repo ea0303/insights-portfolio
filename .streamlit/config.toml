@@ -1,0 +1,6 @@
+[theme]
+primaryColor="#38BDF8"            # sky blue (buttons, sliders, accents)
+backgroundColor="#0F172A"         # deep navy background
+secondaryBackgroundColor="#111827" # dark card background
+textColor="#E5E7EB"               # soft gray text
+font="sans serif"

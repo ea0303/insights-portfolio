@@ -3,16 +3,22 @@ import pandas as pd
 import numpy as np
 import altair as alt
 import sys, os
-sys.path.append(os.path.join(os.path.dirname(__file__), ".."))
+# Ensure repo root is on sys.path so we can import branding/style_utils.py
+ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
+if ROOT not in sys.path:
+    sys.path.insert(0, ROOT)
+
 from branding.style_utils import inject_css, banner, set_altair_theme, COLORS
 
+# Apply unified branding
 inject_css()
 set_altair_theme()
 banner(
-    title="CX Sentiment Analyzer — Voice of Customer",
-    subtitle="Upload customer feedback, classify sentiment, and explore insights.",
-    emoji="💬"
+    title="Promo Impact Forecaster",
+    subtitle="Forecast revenue, conversion, and contribution margin under different discount scenarios.",
+    emoji="📈"
 )
+
 
 st.markdown("""
 Upload a CSV of customer feedback (or use the sample). The app will:

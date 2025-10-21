@@ -10,8 +10,8 @@ inject_css()
 set_altair_theme()
 banner(
     title="CX Sentiment Analyzer — Voice of Customer",
-    subtitle="Upload feedback, label sentiment & topics, and export a labeled CSV.",
-    emoji="🗣️"
+    subtitle="Upload customer feedback, classify sentiment, and explore insights.",
+    emoji="💬"
 )
 
 st.markdown("""

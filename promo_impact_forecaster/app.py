@@ -90,13 +90,13 @@ scenarios = build_scenarios(
 # Summary KPIs
 # -------------------------
 c1, c2, c3, c4 = st.columns(4)
-best_rev = scenarios.loc[scenarios.revenue.idxmax()]
-best_cm = scenarios.loc[scenarios.contribution_margin.idxmax()]
+best_rev = scenarios.loc[scenarios["revenue"].idxmax()]
+best_cm = scenarios.loc[scenarios["contribution_margin"].idxmax()]
 
-c1.metric("Max Revenue ($)", f"{best_rev.revenue:,.0f}", help=f"@ {best_rev.discount_rate_%}% discount")
-c2.metric("Max Contribution ($)", f"{best_cm.contribution_margin:,.0f}", help=f"@ {best_cm.discount_rate_%}% discount")
-c3.metric("Orders (max revenue)", f"{best_rev.orders:,}")
-c4.metric("AOV (max revenue)", f"${best_rev.AOV:,.2f}")
+c1.metric("Max Revenue ($)", f"{best_rev['revenue']:,.0f}", help=f"@ {best_rev['discount_rate_%']}% discount")
+c2.metric("Max Contribution ($)", f"{best_cm['contribution_margin']:,.0f}", help=f"@ {best_cm['discount_rate_%']}% discount")
+c3.metric("Orders (max revenue)", f"{int(best_rev['orders']):,}")
+c4.metric("AOV (max revenue)", f"${best_rev['AOV']:,.2f}")
 
 st.markdown("### Scenario Table")
 st.dataframe(scenarios, use_container_width=True)

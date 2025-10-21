@@ -92,6 +92,7 @@ scenarios = build_scenarios(
 c1, c2, c3, c4 = st.columns(4)
 best_rev = scenarios.loc[scenarios.revenue.idxmax()]
 best_cm = scenarios.loc[scenarios.contribution_margin.idxmax()]
+
 c1.metric("Max Revenue ($)", f"{best_rev.revenue:,.0f}", help=f"@ {best_rev.discount_rate_%}% discount")
 c2.metric("Max Contribution ($)", f"{best_cm.contribution_margin:,.0f}", help=f"@ {best_cm.discount_rate_%}% discount")
 c3.metric("Orders (max revenue)", f"{best_rev.orders:,}")

@@ -2,23 +2,9 @@ import streamlit as st
 import pandas as pd
 import numpy as np
 import altair as alt
-import sys, os
-# Ensure repo root is on sys.path so we can import branding/style_utils.py
-ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
-if ROOT not in sys.path:
-    sys.path.insert(0, ROOT)
 
-from branding.style_utils import inject_css, banner, set_altair_theme, COLORS
-
-# Apply unified branding
-inject_css()
-set_altair_theme()
-banner(
-    title="Promo Impact Forecaster",
-    subtitle="Forecast revenue, conversion, and contribution margin under different discount scenarios.",
-    emoji="📈"
-)
-
+st.set_page_config(page_title="CX Sentiment Analyzer", page_icon="🗣️", layout="wide")
+st.title("🗣️ CX Sentiment Analyzer — Voice of Customer")
 
 st.markdown("""
 Upload a CSV of customer feedback (or use the sample). The app will:

@@ -1,23 +1,11 @@
-import os, sys
 import streamlit as st
 import pandas as pd
 import numpy as np
 import altair as alt
-# Ensure repo root is on sys.path so we can import branding/style_utils.py
-ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
-if ROOT not in sys.path:
-    sys.path.insert(0, ROOT)
 
-from branding.style_utils import inject_css, banner, set_altair_theme, COLORS
+st.set_page_config(page_title="Promo Impact Forecaster", page_icon="📈", layout="wide")
+st.title("📈 Promo Impact Forecaster")
 
-# Apply unified branding
-inject_css()
-set_altair_theme()
-banner(
-    title="Promo Impact Forecaster",
-    subtitle="Forecast revenue, conversion, and contribution margin under different discount scenarios.",
-    emoji="📈"
-)
 st.markdown(
 """
 Model how discount depth impacts **conversion, AOV, revenue, and contribution margin**.
@@ -102,13 +90,12 @@ scenarios = build_scenarios(
 # Summary KPIs
 # -------------------------
 c1, c2, c3, c4 = st.columns(4)
-best_rev = scenarios.loc[scenarios["revenue"].idxmax()]
-best_cm = scenarios.loc[scenarios["contribution_margin"].idxmax()]
-
-c1.metric("Max Revenue ($)", f"{best_rev['revenue']:,.0f}", help=f"@ {best_rev['discount_rate_%']}% discount")
-c2.metric("Max Contribution ($)", f"{best_cm['contribution_margin']:,.0f}", help=f"@ {best_cm['discount_rate_%']}% discount")
-c3.metric("Orders (max revenue)", f"{int(best_rev['orders']):,}")
-c4.metric("AOV (max revenue)", f"${best_rev['AOV']:,.2f}")
+best_rev = scenarios.loc[scenarios.revenue.idxmax()]
+best_cm = scenarios.loc[scenarios.contribution_margin.idxmax()]
+c1.metric("Max Revenue ($)", f"{best_rev.revenue:,.0f}", help=f"@ {best_rev.discount_rate_%}% discount")
+c2.metric("Max Contribution ($)", f"{best_cm.contribution_margin:,.0f}", help=f"@ {best_cm.discount_rate_%}% discount")
+c3.metric("Orders (max revenue)", f"{best_rev.orders:,}")
+c4.metric("AOV (max revenue)", f"${best_rev.AOV:,.2f}")
 
 st.markdown("### Scenario Table")
 st.dataframe(scenarios, use_container_width=True)
